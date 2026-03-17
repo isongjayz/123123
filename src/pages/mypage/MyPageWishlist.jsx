@@ -29,7 +29,7 @@ function MyPageWishlist() {
     if (!isLoggedIn) return null;
 
     return (
-        <div className="mypage inner">
+        <div className="mypage">
             <MyPageSidebar />
             <main className="mypage-content">
                 <header className="mypage-content__header">
@@ -44,7 +44,7 @@ function MyPageWishlist() {
                         </div>
                     ) : (
                         wishlistProducts.map(product => (
-                            <ProductItem key={product.id} product={product} />
+                            <ProductItem key={product.id} product={product} hideActions />
                         ))
                     )}
                 </div>
