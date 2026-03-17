@@ -71,7 +71,12 @@ function PaymentStep({ onPrev, onNext, setOrderId }) {
     const orderData = {
       userId: user?.id || "guest",
       orderer: formData.name,
-      address: `[${formData.postcode}] ${formData.address} ${formData.detailAddress}`,
+      ordererEmail: formData.email,
+      ordererPhone: formData.phone,
+      postcode: formData.postcode,
+      address: formData.address,
+      detailAddress: formData.detailAddress,
+      deliveryMemo: formData.memo,
       totalPrice: getTotalPrice(),
       items: cartItems,
       paymentMethod: formData.paymentMethod,

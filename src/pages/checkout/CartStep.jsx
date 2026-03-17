@@ -6,7 +6,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { GoQuestion } from "react-icons/go";
 import { IoIosArrowDown } from "react-icons/io";
-import { ShoppingBag } from "lucide-react";
+import { CiShoppingCart } from "react-icons/ci";
 import useStore from "../../store/useStore";
 import { productData } from "../../assets/api/productData";
 import CartItem from "./CartItem";
@@ -128,7 +128,7 @@ function CartStep({ onNext }) {
                     })
                   }
                 >
-                  <ShoppingBag size={18} />
+                  <CiShoppingCart size={20} />
                 </button>
                 <Link to={`/product/${product.id}`}>
                   <img src={product.image} alt={product.name} />
@@ -156,7 +156,6 @@ function CartStep({ onNext }) {
             >
               <option value="">선택</option>
               <option value="10">10% 할인</option>
-              <option value="free">무료배송</option>
             </select>
             <IoIosArrowDown className="cart-coupon__arrow" />
           </div>
@@ -178,7 +177,7 @@ function CartStep({ onNext }) {
           </div>
           <div className="cart-summary__row">
             <span>배송비</span>
-            <span>0원</span>
+            <span>무료</span>
           </div>
           <div className="cart-summary__row cart-summary__total">
             <span>합계</span>

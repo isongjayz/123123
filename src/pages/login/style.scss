@@ -1,262 +1,398 @@
 @use '../../styles/utils' as *;
 
-.auth-page {
-    padding-top: 80px;
-    padding-bottom: 0px; // remove bottom padding to flush the split layout
-    background: $main-bg;
-    min-height: calc(100vh - 80px); // Fill height minus header
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// ==============================
+// Login Page
+// ==============================
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 220px;
+  max-width: 1280px;
+  margin: 0 auto;
 
-    &__layout {
-        display: flex;
-        width: 100%;
-        max-width: 1200px;
-        background: $main-bg;
-        align-items: stretch;
+  .login_image {
+    width: 50%;
 
-        @include mobile {
-            flex-direction: column;
-        }
+    img {
+      width: 525px;
+      height: 610px;
+      object-fit: cover;
+    }
+  }
+
+  .login_content {
+    width: 50%;
+    padding: 0 80px;
+
+    .login_title {
+      font-family: 'Bona Nova', serif;
+      color: $color-brown-900;
+      font-size: 36px;
+      line-height: 120%;
+      letter-spacing: -0.9px;
+      margin-bottom: 16px;
     }
 
-    &__image {
-        flex: 1;
-        display: flex;
-        
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            max-height: 700px; // max-height for large screens
-        }
-        
-        @include mobile {
-            display: none; // hide on mobile to save space
-        }
+    .login_desc {
+      color: $color-brown-900;
+      font-size: 14px;
+      line-height: 150%;
+      margin-bottom: 40px;
     }
 
-    &__container {
-        flex: 1;
-        padding: 40px 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .login_field {
+      margin-bottom: 24px;
 
-        @include mobile {
-            padding: 20px;
-        }
-    }
-
-    &__title {
-        font-size: 32px;
-        color: $color-brown-900;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-
-    &__desc {
-        font-size: 15px;
-        color: $color-brown-500;
-        text-align: center;
-        margin-bottom: 40px;
-        line-height: 1.6;
-    }
-
-    &__links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 30px;
+      label {
+        display: block;
         font-size: 14px;
-        color: $color-brown-500;
-
-        a {
-            color: $color-brown-900;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-
-            &:hover {
-                color: $color-brown-700;
-            }
-        }
-
-        .divider {
-            color: $color-brown-300;
-        }
-
-        .text {
-            color: $color-brown-500;
-        }
-    }
-}
-
-.auth-form {
-    background: transparent;
-    padding: 0;
-    border: none;
-
-    @include mobile {
-        padding: 30px 20px;
-    }
-
-    &__group {
-        margin-bottom: 25px;
-
-        label {
-            display: block;
-            font-size: 14px;
-            color: $color-brown-900;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid $color-brown-200;
-            font-family: inherit;
-            font-size: 14px;
-            background: transparent;
-            transition: border-color 0.2s;
-
-            &:focus {
-                outline: none;
-                border-color: $color-brown-900;
-            }
-
-            &::placeholder {
-                color: $color-brown-300;
-            }
-        }
-    }
-
-    &__error {
-        color: #d13b3b;
-        font-size: 13px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    &__result {
-        background: #fcfaf3;
-        border: 1px solid $color-brown-200;
-        padding: 20px;
-        text-align: center;
-        font-size: 15px;
+        font-weight: 600;
         color: $color-brown-900;
-        margin-bottom: 25px;
+        margin-bottom: 8px;
+      }
 
-        strong {
-            display: block;
-            font-size: 18px;
-            margin-top: 10px;
+      input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $color-brown-900;
+        background: transparent;
+        padding: 8px 0;
+        font-family: inherit;
+        font-size: 14px;
+        color: $color-brown-900;
+        outline: none;
+
+        &::placeholder {
+          color: $color-brown-300;
         }
+      }
     }
 
-    &__submit {
-        width: 100%;
-        padding: 18px 0;
-        font-size: 15px;
-        margin-bottom: 15px;
+    .login_find {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-bottom: 24px;
+
+      a {
+        font-size: 14px;
+        color: $color-brown-900;
+        text-decoration: none;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+      .login_find-sep {
+        color: $color-brown-300;
+        font-size: 14px;
+      }
+
+      .login_find-test {
+        border: none;
+        background: none;
+        padding: 0;
+        font-size: 14px;
+        color: $color-brown-900;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
     }
 
-    &__test-btn {
-        width: 100%;
-        padding: 15px 0;
-        font-size: 15px;
+    .login_error {
+      color: #d13b3b;
+      font-size: 13px;
+      margin-bottom: 16px;
     }
 
-    // 탭 스타일 (아이디/비밀번호 찾기 용)
-    &__tabs {
+    .login_btn {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid $color-brown-900;
+      background: transparent;
+      font-family: inherit;
+      font-size: 16px;
+      color: $color-brown-900;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: $color-brown-500;
+        border-color: $color-brown-500;
+        color: $main-bg;
+      }
+    }
+
+    .login_sns {
+      margin-top: 40px;
+
+      .login_sns_divider {
         display: flex;
-        margin-bottom: 20px;
-        border-bottom: 1px solid $color-brown-200;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+
+        &::before,
+        &::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: $color-brown-900;
+        }
+
+        span {
+          font-size: 14px;
+          color: $color-brown-900;
+          white-space: nowrap;
+        }
+      }
+
+      .login_sns_icons {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
 
         button {
-            flex: 1;
-            padding: 15px 0;
-            background: none;
-            border: none;
-            font-size: 15px;
-            color: $color-brown-400;
-            cursor: pointer;
-            position: relative;
-            top: 1px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
 
-            &.is-active {
-                color: $color-brown-900;
-                font-weight: 500;
-                border-bottom: 2px solid $color-brown-900;
-            }
+          img {
+            width: 48px;
+            height: 48px;
+          }
         }
+      }
     }
+  }
 }
 
-
+// ==============================
+// Auth Form (FindAccount, Signup 공용)
+// ==============================
 .auth-page {
-    &__links--top {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin: 8px 0 20px;
-        font-size: 14px;
-        color: $color-brown-500;
+  padding-top: 80px;
+  background: $main-bg;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        a {
-            color: $color-brown-900;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
+  &__layout {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    background: $main-bg;
+    align-items: stretch;
 
-        .divider {
-            color: $color-brown-300;
-        }
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    flex: 1;
+    display: flex;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 700px;
     }
 
-    &__text-button {
-        border: none;
-        background: transparent;
-        padding: 0;
-        color: $color-brown-900;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-        cursor: pointer;
-        font: inherit;
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__container {
+    flex: 1;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mobile {
+      padding: 20px;
+    }
+  }
+
+  &__title {
+    font-size: 32px;
+    color: $color-brown-900;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  &__desc {
+    font-size: 15px;
+    color: $color-brown-500;
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  &__links--top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0 20px;
+    font-size: 14px;
+
+    a {
+      color: $color-brown-900;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
-    &__sns {
-        margin-top: 16px;
-        text-align: center;
-
-        p {
-            margin-bottom: 12px;
-            color: $color-brown-500;
-        }
+    .divider {
+      color: $color-brown-300;
     }
+  }
 
-    &__sns-icons {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+  &__text-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: $color-brown-900;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  &__sns {
+    margin-top: 16px;
+    text-align: center;
+
+    p {
+      margin-bottom: 12px;
+      color: $color-brown-500;
     }
+  }
+
+  &__sns-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
 .auth-form {
-    &__back-btn {
-        margin-bottom: 0;
+  background: transparent;
+  padding: 0;
+  border: none;
+
+  &__group {
+    margin-bottom: 25px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: $color-brown-900;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid $color-brown-200;
+      font-family: inherit;
+      font-size: 14px;
+      background: transparent;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $color-brown-900;
+      }
+
+      &::placeholder {
+        color: $color-brown-300;
+      }
+    }
+  }
+
+  &__error {
+    color: #d13b3b;
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__result {
+    background: #fcfaf3;
+    border: 1px solid $color-brown-200;
+    padding: 20px;
+    text-align: center;
+    font-size: 15px;
+    color: $color-brown-900;
+    margin-bottom: 25px;
+
+    strong {
+      display: block;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 18px 0;
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+
+  &__tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $color-brown-200;
+
+    button {
+      flex: 1;
+      padding: 15px 0;
+      background: none;
+      border: none;
+      font-size: 15px;
+      color: $color-brown-400;
+      cursor: pointer;
+      position: relative;
+      top: 1px;
+
+      &.is-active {
+        color: $color-brown-900;
+        font-weight: 500;
+        border-bottom: 2px solid $color-brown-900;
+      }
+    }
+  }
+
+  &__back-btn {
+    margin-bottom: 0;
+  }
 }
 
 .sns-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid $color-brown-200;
-    background: transparent;
-    color: $color-brown-900;
-    cursor: pointer;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid $color-brown-200;
+  background: transparent;
+  color: $color-brown-900;
+  cursor: pointer;
 }

@@ -11,7 +11,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    
+
     const { login, loginAsTestUser } = useStore();
     const navigate = useNavigate();
 
@@ -33,7 +33,6 @@ function Login() {
     };
 
     const handleTestAccountFill = () => {
-        // 수정: 테스트 계정 버튼 클릭 시 계정 정보만 입력하고 로그인은 사용자가 직접 진행
         const testUser = loginAsTestUser(true);
         setEmail(testUser.email);
         setPassword(testUser.password);
@@ -41,70 +40,83 @@ function Login() {
     };
 
     return (
-        <div className="auth-page inner">
-            <div className="auth-page__layout">
-                <div className="auth-page__image">
-                    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=80" alt="Aesop Login" />
-                </div>
+        <div className="login">
+            {/* 왼쪽 이미지 */}
+            <div className="login_image">
+                <img src="/images/login/loginimg.png" alt="Aesop" />
+            </div>
 
-                <div className="auth-page__container">
-                    <h2 className="font-serif auth-page__title">Welcome to Aesop</h2>
-                    <p className="auth-page__desc">
-                        이솝에 오신것을 환영합니다.<br/>
-                        다양한 혜택과 빠른 주문을 위해 로그인해주시기 바랍니다.
-                    </p>
+            {/* 오른쪽 폼 */}
+            <div className="login_content">
+                <h1 className="login_title">Welcome to Aesop</h1>
+                <p className="login_desc">
+                    이솝에 오신것을 환영합니다.
+                    <br />
+                    다양한 혜택과 빠른 주문을 위해 로그인해주시기 바랍니다.
+                </p>
 
-                    <form className="auth-form" onSubmit={handleLogin}>
-                        <div className="auth-form__group">
-                            <label>EMAIL</label>
-                            <input 
-                                type="email" 
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="이메일을 입력해주세요"
-                            />
-                        </div>
-                        <div className="auth-form__group">
-                            <label>PASSWORD</label>
-                            <input 
-                                type="password" 
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="........"
-                            />
-                        </div>
-                    
-                        <div className="auth-page__links--top">
-                            <Link to="/find-account">이메일 찾기</Link>
-                            <span className="divider">/</span>
-                            <Link to="/find-account?tab=password">비밀번호 찾기</Link>
-                            <span className="divider">/</span>
-                            <button type="button" className="auth-page__text-button" onClick={handleTestAccountFill}>
-                                테스트 계정
-                            </button>
-                        </div>
-                        
-                        {errorMsg && <p className="auth-form__error">{errorMsg}</p>}
+                <form className="login_form" onSubmit={handleLogin}>
+                    {/* 이메일 */}
+                    <div className="login_field">
+                        <label>EMAIL</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="이메일을 입력해주세요"
+                        />
+                    </div>
 
-                        <button type="submit" className="btn-outline auth-form__submit">
-                            Log in
+                    {/* 비밀번호 */}
+                    <div className="login_field">
+                        <label>PASSWORD</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="••••••••"
+                        />
+                    </div>
+
+                    {/* 이메일/비밀번호 찾기 */}
+                    <div className="login_find">
+                        <Link to="/find-account">이메일 찾기</Link>
+                        <span className="login_find-sep">/</span>
+                        <Link to="/find-account?tab=password">비밀번호 찾기</Link>
+                        <span className="login_find-sep">/</span>
+                        <button type="button" className="login_find-test" onClick={handleTestAccountFill}>
+                            테스트 계정
                         </button>
-                        <button 
-                            type="button" 
-                            className="btn-outline auth-form__signup"
-                            onClick={() => navigate('/signup')}
-                        >
-                            회원가입
-                        </button>
-                    </form>
+                    </div>
 
-                    <div className="auth-page__sns">
-                        <p>SNS 로그인</p>
-                        <div className="auth-page__sns-icons">
-                            <button className="sns-btn naver">N</button>
-                            <button className="sns-btn kakao">K</button>
-                            <button className="sns-btn google">G</button>
-                        </div>
+                    {errorMsg && <p className="login_error">{errorMsg}</p>}
+
+                    {/* 버튼 */}
+                    <button type="submit" className="login_btn">Log in</button>
+                    <button
+                        type="button"
+                        className="login_btn"
+                        onClick={() => navigate('/signup')}
+                    >
+                        Sign up
+                    </button>
+                </form>
+
+                {/* SNS 로그인 */}
+                <div className="login_sns">
+                    <div className="login_sns_divider">
+                        <span>SNS 로그인</span>
+                    </div>
+                    <div className="login_sns_icons">
+                        <button aria-label="네이버 로그인">
+                            <img src="/images/login/naver.png" alt="naver" />
+                        </button>
+                        <button aria-label="카카오 로그인">
+                            <img src="/images/login/kakao.png" alt="kakao" />
+                        </button>
+                        <button aria-label="구글 로그인">
+                            <img src="/images/login/google.png" alt="google" />
+                        </button>
                     </div>
                 </div>
             </div>
