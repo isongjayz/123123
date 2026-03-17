@@ -6,21 +6,3 @@
 
 // Libre Baskerville (영문 에디토리얼 세리프)
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
-
-// Noto Serif KR (한글 세리프 - AE-GUNG 메인비주얼)
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
-
-// Playfair Display (Ogg 대체용 영문 세리프 디스플레이)
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
-// Ogg (영문 디스플레이 세리프 - 로컬 폰트 파일이 있을 때 사용)
-// Ogg 폰트 파일을 public/fonts/ 에 넣으면 자동 적용됩니다.
-@font-face {
-    font-family: 'Ogg';
-    src: url('/fonts/Ogg-Roman.woff2') format('woff2'),
-         url('/fonts/Ogg-Roman.woff') format('woff'),
-         url('/fonts/Ogg-Roman.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useStore from '../../../store/useStore';
 import './ProductItem.scss';
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, hideActions = false }) => {
     const { user, isLoggedIn, addToCart, toggleWishlist, isProductWishlisted } = useStore();
     const navigate = useNavigate();
     const isWishlisted = user ? isProductWishlisted(user.id, product.id) : false;
@@ -82,7 +82,7 @@ const ProductItem = ({ product }) => {
                 <h3 className="product-card__title">{product.name}</h3>
             </div>
 
-            <div className="product-card__action">
+            {!hideActions && <div className="product-card__action">
                 {isSetProduct ? (
                     <div className="product-card__options">
                         <span className="product-card__option-label is-set">SET</span>
@@ -105,7 +105,7 @@ const ProductItem = ({ product }) => {
                 <button className="product-card__add-btn" onClick={handleAddToCart} type="button">
                     {currentPrice.toLocaleString()}원 · 카트에 추가
                 </button>
-            </div>
+            </div>}
         </div>
     );
 };

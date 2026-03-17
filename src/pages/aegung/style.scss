@@ -1,8 +1,8 @@
 @use '../../styles/utils' as *;
 
 .aegung {
-    padding: 0;
-    text-align: left;
+    padding: 120px 0;
+    text-align: center;
 
     @include mobile {
         padding: 80px 15px;
