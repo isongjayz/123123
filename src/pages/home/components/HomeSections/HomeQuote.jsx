@@ -27,10 +27,16 @@ function HomeQuote() {
     return (
         <section className="home__quote" ref={sectionRef}>
             <div className="inner">
-                <blockquote className="home__quote-text font-serif">
-                    "A balance of philosophy, nature,
-                    and carefully considered formulation"
-                </blockquote>
+                <div className="home__quote-content">
+                    <h2 className="home__quote-title">
+                        A balance of <span className="italic">philosophy</span>, nature,<br />
+                        and carefully considered <span className="italic">formulation</span>
+                    </h2>
+                    <p className="home__quote-desc">
+                        이솝은 브랜드 철학을 바탕으로 자연에서 영감을 받은 성분을 신중하게 선택하고<br />
+                        이를 세심한 포뮬레이션으로 완성하여 균형 잡힌 케어 경험을 만들어냅니다.
+                    </p>
+                </div>
             </div>
         </section>
     );

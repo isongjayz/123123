@@ -27,8 +27,8 @@ function HomeBotanicals() {
     const [activeIngredient, setActiveIngredient] = useState(null);
 
     // 각 브랜치의 데이터와 시작점 정렬을 위한 Y 오프셋 계산
-    // 시작점 목표: (2292.383, 1643.43). 
-    // 기본 X 오프셋은 2291.383 (1620 + 672.383 - 1).
+    // 시작점 목표: (1295.383, 1643.43). (HomeValues의 551px 축에 대응)
+    // 기본 X 오프셋은 1965.383 (1294 + 672.383 - 1).
     // Y 오프셋은 1643.43 - (원래 시작점 Y)
     const branches = [
         {
@@ -113,7 +113,7 @@ function HomeBotanicals() {
                             ref={startRef}
                             className="hero-flow__path"
                             d="M 1 1 L 1 1001.26 C 0.999837 1189.31, 170.908 1585.38, 672.383 1643.43"
-                            transform="translate(1620, 0)"
+                            transform="translate(1294, 0)"
                             pathLength="1"
                             stroke="#603b2d" strokeWidth="2.5" strokeLinecap="round" fill="none"
                             vectorEffect="non-scaling-stroke"
@@ -132,7 +132,7 @@ function HomeBotanicals() {
                                 ref={el => branchRefs.current[i] = el}
                                 className="hero-flow__path branch-path"
                                 d={branch.d}
-                                transform={`translate(2291.383, ${branch.yOffset})`}
+                                transform={`translate(1965.16, ${branch.yOffset})`}
                                 pathLength="1"
                                 stroke="#603b2d" strokeWidth="1.5" strokeLinecap="round" fill="none"
                                 vectorEffect="non-scaling-stroke"
@@ -144,7 +144,7 @@ function HomeBotanicals() {
                             ref={mergePathRef}
                             className="hero-flow__path"
                             d="M 1 1001.26 C 0.999837 1189.31, 170.908 1585.38, 672.383 1643.43"
-                            transform={`translate(${2291.383 + 3319.12 - 1}, ${branches[4].yOffset + 1.22536 - 1001.26})`}
+                            transform={`translate(${1965.16 + 3319.12 - 1}, ${branches[4].yOffset + 1.22536 - 1001.26})`}
                             pathLength="1"
                             stroke="#603b2d" strokeWidth="2" strokeLinecap="round" fill="none"
                             vectorEffect="non-scaling-stroke"
@@ -168,7 +168,7 @@ function HomeBotanicals() {
                                 key={branch.id}
                                 className={`ingredient-point ${activeIngredient === branch.id ? 'is-active' : ''}`}
                                 style={{
-                                    left: 2291.383 + 3319.12,
+                                    left: 1965.16 + 3319.12,
                                     top: branch.yOffset + branch.endY
                                 }}
                                 onMouseEnter={() => setActiveIngredient(branch.id)}
@@ -183,7 +183,7 @@ function HomeBotanicals() {
                     </div>
 
                     {/* 최종 병 이미지 */}
-                    <div className="home__botanicals-final-bottle" style={{ left: 5962, top: 1191, width: 600 }}>
+                    <div className="home__botanicals-final-bottle" style={{ left: 5636, top: 1191, width: 600 }}>
                         <div className="product-appearance">
                             <img
                                 src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80"

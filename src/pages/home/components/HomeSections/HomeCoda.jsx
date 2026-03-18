@@ -26,10 +26,10 @@ function HomeCoda() {
     return (
         <section className="home__coda" ref={sectionRef}>
             <div className="inner">
-                <p className="home__coda-text font-serif">
-                    Finding a quiet sanctuary<br />
-                    in your senses
-                </p>
+                <h2 className="home__coda-title">
+                    Finding a quiet <span className="italic">sanctuary</span><br />
+                    in your <span className="italic">senses</span>
+                </h2>
             </div>
         </section>
     );
