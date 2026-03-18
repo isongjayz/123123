@@ -1,18 +1,45 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
- * HomeValues 컴포넌트 (기존 HomePhilosophy)
+ * HomeValues 컴포넌트
  * 
  * 브랜드가 추구하는 핵심 가치(미학, 윤리 등)를 수직 레이아웃으로 보여줍니다.
- * GSAP을 사용하여 스크롤 시 각 가치 항목이 순차적으로 등장합니다.
+ * GSAP을 사용하여 스크롤 시 각 가치 항목이 순차적으로 등장하며,
+ * 중앙의 가이드 라인이 스크롤에 맞춰 부드럽게 그려집니다.
  */
 function HomeValues() {
     const sectionRef = useRef(null);
+    const linePathRef = useRef(null);
 
     useGSAP(() => {
-        // 스크롤 시 각 가치 항목에 대한 페이드인 애니메이션
+        // 중앙 라인 그리기 애니메이션 (스크롤 동기화)
+        if (linePathRef.current) {
+            const path = linePathRef.current;
+            const length = path.getTotalLength();
+            
+            // 초기 상태 설정 (투명하게 시작하여 그려지는 느낌)
+            gsap.set(path, { 
+                strokeDasharray: length, 
+                strokeDashoffset: length,
+            });
+            
+            gsap.to(path, {
+                strokeDashoffset: 0,
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top bottom', // 섹션이 화면 하단에 걸치자마자 바로 내려오기 시작
+                    end: 'bottom center',  // 섹션 바닥이 중앙에 올 때 완료 (더 빠르게 내려오는 효과)
+                    scrub: true,
+                }
+            });
+        }
+
+        // 각 가치 항목에 대한 페이드인 애니메이션
         gsap.from('.home__values-item', {
             scrollTrigger: {
                 trigger: sectionRef.current,
@@ -29,8 +56,20 @@ function HomeValues() {
     return (
         <section className="home__values" ref={sectionRef}>
             <div className="home__values-inner">
-                {/* 수직 중앙 가이드 라인 */}
-                <div className="home__values-line"></div>
+                {/* 수직 중앙 가이트 라인 SVG Path (CSS line 대체) */}
+                <div className="home__values-svg-wrap">
+                    <svg viewBox="0 0 1920 1000" preserveAspectRatio="none" className="home__values-svg">
+                        <path 
+                            ref={linePathRef}
+                            d="M672.383 0 V1000" 
+                            stroke="#603B2D" 
+                            strokeOpacity="0.4"
+                            strokeWidth="1.5"
+                            fill="none"
+                            vectorEffect="non-scaling-stroke"
+                        />
+                    </svg>
+                </div>
 
                 {/* Item 1 */}
                 <div className="home__values-item">

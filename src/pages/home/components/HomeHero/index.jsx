@@ -1,11 +1,12 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 /**
  * HomeHero 컴포넌트
- * 
- * SVG 패스와 CSS/JS 협업을 통해 보틀 드로잉 애니메이션을 구현합니다.
- * 기존 풀스크린 히어로를 대체하여 브랜드 아이덴티티를 강조하는 비주얼을 제공합니다.
+ *
+ * SVG 패스와 GSAP을 통해 보틀 드로잉 및 텍스트 확산 애니메이션을 구현합니다.
  */
 
 const BOTTLE_PATH =
@@ -15,6 +16,9 @@ const BOTTLE_TRANSFORM = 'translate(847 160)';
 const HERO_IMAGE_PATH = '/images/home/bottle_sequence_fix_outline/hero.png';
 
 function HomeHero() {
+    const containerRef = useRef(null);
+    const leftTextRef = useRef(null);
+    const rightTextRef = useRef(null);
     const drawRef = useRef(null);
     const glowRef = useRef(null);
     const clipId = useId().replace(/:/g, '-');
@@ -41,7 +45,7 @@ function HomeHero() {
 
         const hideOutlineTimer = window.setTimeout(() => {
             setIsOutlineHidden(true);
-        }, 3050);
+        }, 1800);
 
         return () => {
             cancelAnimationFrame(frame);
@@ -49,33 +53,67 @@ function HomeHero() {
         };
     }, []);
 
+    useGSAP(
+        () => {
+            if (!isReady) return;
+
+            // prefers-reduced-motion 확인
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                gsap.set([leftTextRef.current, rightTextRef.current], {
+                    opacity: 1,
+                    x: (i) => (i === 0 ? '-118%' : '118%'),
+                });
+                return;
+            }
+
+            const isMobile = window.matchMedia('(max-width: 820px)').matches;
+            const startX = isMobile ? '12%' : '18%';
+            const endX = isMobile ? '108%' : '118%';
+
+            const tl = gsap.timeline();
+
+            // 텍스트 확산 애니메이션
+            tl.fromTo(
+                leftTextRef.current,
+                { x: '-2vw', opacity: 0 },
+                { x: '-12.7vw', opacity: 1, duration: 0.8, ease: 'power2.out', delay: 1.3 }
+            );
+
+            tl.fromTo(
+                rightTextRef.current,
+                { x: '2vw', opacity: 0 },
+                { x: '12.7vw', opacity: 1, duration: 0.8, ease: 'power2.out' },
+                '<+=0.1'
+            );
+        },
+        { dependencies: [isReady], scope: containerRef }
+    );
+
     return (
-        <section className={`home__hero ${isReady ? 'is-ready' : ''} ${isOutlineHidden ? 'is-outline-hidden' : ''}`}>
+        <section
+            ref={containerRef}
+            className={`home__hero ${isReady ? 'is-ready' : ''} ${isOutlineHidden ? 'is-outline-hidden' : ''}`}
+        >
             <div className="home__hero-background" aria-hidden="true">
                 <img src={HERO_IMAGE_PATH} alt="" className="home__hero-background-image" />
             </div>
 
             <div className="home__hero-overlay" aria-hidden="true" />
 
-            <div className="home__hero-copy home__hero-copy--left">
-                <p className="home__hero-eyebrow font-serif">Aesop</p>
+            <div className="home__hero-title-container">
                 <h2 className="home__hero-heading font-serif">
-                    Tacit trails of citrus,
-                    <br />
-                    woods, and warm stillness.
+                    <span ref={leftTextRef} className="home__hero-text home__hero-text--left">
+                        Aesop
+                        <span className="home__hero-subtext">
+                            From humble botanical beginnings,<br />
+                            Aesop has shaped a philosophy of thoughtful and purposeful care.
+                        </span>
+                    </span>
+                    <span ref={rightTextRef} className="home__hero-text home__hero-text--right">
+                        Origin
+                    </span>
                 </h2>
             </div>
-
-
-            <div className="home__hero-copy home__hero-copy--right">
-                <p className="home__hero-eyebrow font-serif">Eau de Parfum</p>
-                <h2 className="home__hero-heading font-serif">
-                    A bottle revealed,
-                    <br />
-                    then language unfolds.
-                </h2>
-            </div>
-
 
             <svg
                 className="home__hero-svg"
@@ -84,7 +122,6 @@ function HomeHero() {
                 fill="none"
                 aria-hidden="true"
             >
-
                 <defs>
                     <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
                         <path d={BOTTLE_PATH} transform={BOTTLE_TRANSFORM} />

@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 /**
- * HomeGiftGuide 컴포넌트 (기존 HomeGifts)
+ * HomeGiftGuide 컴포넌트
  * 
  * 기프트 가이드 섹션과 대표 기프트 제품 리스트를 보여줍니다.
  * 제품 노출 시 순차적인(Staggered) 애니메이션이 적용되어 있습니다.
@@ -45,13 +45,15 @@ function HomeGiftGuide() {
             <section className="home__gift-guide">
                 <div className="inner">
                     <div className="home__gift-guide-content">
-                        <h3 className="font-serif">Aesop’s sensorial care experiences to
-                            share with someone special</h3>
-                        <p>
-                            이솝의 감각적인 케어 경험을 소중한 사람에게 전해보세요.
+                        <h2 className="home__gift-guide-title">
+                            Aesop’s <span className="italic">sensorial</span> care experiences to<br />
+                            share with someone <span className="italic">special</span>
+                        </h2>
+                        <p className="home__gift-guide-desc">
+                            이솝의 감각적인 케어 경험을 소중한 사람에게 전해보세요.<br />
                             일상 속 순간을 더욱 특별하게 만들어 줍니다.
                         </p>
-                        <Link to="/gift" className="home__cta-btn">Gift Guide</Link>
+                        <Link to="/gift" className="home__gift-guide-btn">Gift Guide</Link>
                     </div>
                 </div>
             </section>
@@ -95,7 +97,7 @@ function HomeGiftGuide() {
                                 <img src="images/gift_item3.jpg" alt="A Scent for Lasting Memories" />
                             </div>
                             <h3 className="font-serif">A Scent for Lasting Memories</h3>
-                            <p>가장 많이 사랑받는 구성 속에 담긴 변치 않는 가치<br />실패 없는 선택을 넘어 향기로운 기억까지 선물하세요.</p>
+                            <p>소중한 이의 특별한 날을 완성하는 감각적인 향의 여정,<br />함께 나눈 시간의 밀도만큼 깊고 우아한 여운을 선물하세요.</p>
                             <Link to="/gift" className="home__gift-link">바로가기</Link>
                         </div>
                     </div>
