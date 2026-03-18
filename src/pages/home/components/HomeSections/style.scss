@@ -114,79 +114,115 @@
 // ===== 6. Brand Quote (브랜드 인용구) =====
 .home {
     &__quote {
-        padding: 150px 0;
-        background: $color-brown-900;
+        padding: 15vw 0;
+        background: $main-bg;
 
         @include mobile {
             padding: 100px 0;
         }
-    }
 
-    &__quote-text {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1.6;
-        letter-spacing: 1px;
-        max-width: 800px;
-        margin: 0 auto;
+        &-content {
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+        }
 
-        @include mobile {
-            font-size: 20px;
-            padding: 0 20px;
+        &-title {
+            font-family: 'Pretendard', sans-serif; // 기본 폰트 적용
+            font-size: clamp(40px, 6.5vw, 100px); // 100px 목표, 화면에 맞춰 유동적으로 조절
+            font-weight: 200; // 얇은 가중치
+            color: $color-brown-500; // 요청하신 색상
+            letter-spacing: -1.5px;
+            margin-bottom: 21px;
+            word-break: keep-all;
+            line-height: 1.2;
+
+            span.italic {
+                font-style: italic;
+                font-family: 'Libre Baskerville', serif; // 유저 요청 폰트
+            }
+
+            @include mobile {
+                font-size: 32px;
+                letter-spacing: -0.5px;
+            }
+        }
+
+        &-desc {
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(14px, 1.5vw, 20px);
+            color: $color-brown-300;
+            line-height: 1.5;
+            letter-spacing: -0.4px;
+            word-break: keep-all;
         }
     }
 }
 
 // ===== 7-8. Gift Guide & Featured Gifts (기프트 관련) =====
 .home {
-    &__cta-btn {
-        display: inline-block;
-        padding: 14px 36px;
-        background: $color-brown-700;
-        color: $white;
-        font-size: 13px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        transition: background 0.3s;
-        border: 1px solid $color-brown-700;
-
-        &:hover {
-            background: $color-brown-900;
-        }
-    }
-
     &__gift-guide {
-        padding: 120px 0;
+        padding: 15vw 0;
         background: $main-bg;
 
         @include mobile {
             padding: 80px 0;
         }
-    }
 
-    &__gift-guide-content {
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto;
+        &-content {
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+        }
 
-        h3 {
-            font-size: 36px;
-            font-weight: 400;
-            color: $color-brown-900;
-            margin-bottom: 20px;
+        &-title {
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(40px, 6.5vw, 100px);
+            font-weight: 200;
+            color: $color-brown-500;
+            letter-spacing: -1.5px;
+            margin-bottom: 21px;
+            word-break: keep-all;
+            line-height: 1.2;
+
+            span.italic {
+                font-style: italic;
+                font-family: 'Libre Baskerville', serif;
+                letter-spacing: -1.5px;
+            }
 
             @include mobile {
-                font-size: 26px;
+                font-size: 32px;
+                letter-spacing: -0.5px;
             }
         }
 
-        p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: $color-brown-400;
-            margin-bottom: 40px;
+        &-desc {
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(14px, 1.5vw, 20px);
+            line-height: 1.5;
+            color: $color-brown-300;
+            margin-bottom: 70px;
+            letter-spacing: -0.4px;
+        }
+
+        &-btn {
+            display: inline-block;
+            padding: 11px 32px;
+            border: 1px solid $color-brown-500;
+            color: $color-brown-500;
+            font-size: 25px;
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.275px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: $color-brown-900;
+                background-color: $color-brown-900;
+                color: $white;
+            }
         }
     }
 
@@ -220,9 +256,11 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        gap: 100px;
-        max-width: 600px;
+        gap: 150px;
+        max-width: 1200px; // 타이틀을 위해 너비 확장
+        width: 100%;
         margin: 0 auto;
+        padding: 0 20px;
 
         @include mobile {
             gap: 80px;
@@ -236,6 +274,7 @@
 
         .home__gift-image {
             width: 100%;
+            max-width: 560px; // 이미지는 유저가 만족했던 너비로 고정
             margin: 0 auto 30px;
             border-radius: 10px;
             overflow: hidden;
@@ -255,10 +294,12 @@
         }
 
         h3 {
-            font-size: 26px;
-            color: $color-brown-900;
-            margin-bottom: 20px;
-            font-weight: 400;
+            font-family: 'Bona Nova', sans-serif;
+            font-size: 50px;
+            color: $color-brown-500;
+            margin-bottom: 17px;
+            line-height: 1.5;
+            letter-spacing: -1px;
 
             @include mobile {
                 font-size: 22px;
@@ -266,19 +307,20 @@
         }
 
         p {
-            font-size: 14px;
-            color: $color-brown-400;
-            line-height: 1.8;
+            font-size: 20px;
+            color: $color-brown-300;
+            line-height: 1.5;
+            letter-spacing: -0.4px;
             margin-bottom: 30px;
             word-break: keep-all;
         }
 
         .home__gift-link {
             display: inline-block;
-            padding: 14px 40px;
-            border: 1px solid $color-brown-700;
-            color: $color-brown-700;
-            font-size: 13px;
+            padding: 11px 32px;
+            border: 1px solid $color-brown-500;
+            color: $color-brown-500;
+            font-size: 21px;
             transition: all 0.3s;
             text-decoration: none;
 
@@ -293,23 +335,43 @@
 // ===== 9. Coda (마무리 메시지) =====
 .home {
     &__coda {
-        padding: 120px 0;
-        background: #f5f0e6;
-
-        @include mobile {
-            padding: 80px 0;
-        }
-    }
-
-    &__coda-text {
+        padding: 15vw 0;
+        background: $color-yellow-500;
         text-align: center;
-        font-size: 28px;
-        font-weight: 400;
-        color: $color-brown-400;
-        letter-spacing: 1px;
 
         @include mobile {
-            font-size: 20px;
+            padding: 100px 0;
+        }
+
+        &-title {
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(40px, 6.5vw, 100px);
+            font-weight: 100;
+            color: $color-brown-500;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+            margin-bottom: 21px;
+            word-break: keep-all;
+
+            span.italic {
+                font-style: italic;
+                font-family: 'Libre Baskerville', serif;
+                letter-spacing: -1.5px;
+            }
+
+            @include mobile {
+                font-size: 32px;
+                letter-spacing: -1.5px;
+            }
+        }
+
+        &-desc {
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(14px, 1.5vw, 20px);
+            color: $color-brown-300;
+            line-height: 1.5;
+            letter-spacing: -0.4px;
+            word-break: keep-all;
         }
     }
 }
