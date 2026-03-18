@@ -135,6 +135,7 @@
             letter-spacing: -1.5px;
             margin-bottom: 21px;
             word-break: keep-all;
+            line-height: 1.2;
 
             span.italic {
                 font-style: italic;
@@ -182,6 +183,7 @@
             letter-spacing: -1.5px;
             margin-bottom: 21px;
             word-break: keep-all;
+            line-height: 1.2;
 
             span.italic {
                 font-style: italic;
@@ -347,6 +349,8 @@
             font-weight: 100;
             color: $color-brown-500;
             letter-spacing: -1.5px;
+            line-height: 1.2;
+            margin-bottom: 21px;
             word-break: keep-all;
 
             span.italic {
@@ -359,6 +363,15 @@
                 font-size: 32px;
                 letter-spacing: -1.5px;
             }
+        }
+
+        &-desc {
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(14px, 1.5vw, 20px);
+            color: $color-brown-300;
+            line-height: 1.5;
+            letter-spacing: -0.4px;
+            word-break: keep-all;
         }
     }
 }
