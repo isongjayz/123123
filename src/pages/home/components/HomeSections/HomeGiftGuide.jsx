@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 /**
- * HomeGiftGuide 컴포넌트 (기존 HomeGifts)
+ * HomeGiftGuide 컴포넌트
  * 
  * 기프트 가이드 섹션과 대표 기프트 제품 리스트를 보여줍니다.
  * 제품 노출 시 순차적인(Staggered) 애니메이션이 적용되어 있습니다.

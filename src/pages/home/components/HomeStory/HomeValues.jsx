@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 /**
- * HomeValues 컴포넌트 (기존 HomePhilosophy)
+ * HomeValues 컴포넌트
  * 
  * 브랜드가 추구하는 핵심 가치(미학, 윤리 등)를 수직 레이아웃으로 보여줍니다.
  * GSAP을 사용하여 스크롤 시 각 가치 항목이 순차적으로 등장합니다.

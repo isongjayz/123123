@@ -306,20 +306,37 @@
 
 .home {
 
-    // ===== 4. Botanicals (식물 성분 섹션) =====
+    // ===== 4. Botanicals (식물 성분 섹션: 가로 스크롤형) =====
     &__botanicals {
         width: 100%;
+        height: 100vh;
         background: $color-yellow-500;
-        padding: 60px 0;
         overflow: hidden;
+        position: relative;
     }
 
-    &__botanicals-visual {
-        position: relative;
+    &__botanicals-horizontal {
+        height: 100%;
         width: 100%;
-        max-width: 1440px;
-        margin: 0 auto;
-        height: 600px;
+        position: relative;
+        will-change: transform;
+    }
+
+    &__botanicals-canvas {
+        width: 5659px;
+        height: 2539px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: $color-yellow-500;
+        transform-origin: left top;
+        // 캔버스의 높이를 화면 높이(100vh)에 맞게 비율 조절
+        // 이로 인해 모든 좌표가 화면 안에 비례해서 들어옵니다.
+    }
+
+    &__botanicals-path-text {
+        letter-spacing: 0.05em;
+        font-style: italic;
     }
 
     &__botanicals-svg {
@@ -328,90 +345,89 @@
         width: 100%;
         height: 100%;
         z-index: 1;
+        pointer-events: none;
 
-        path {
-            opacity: 0.6;
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 0;
+        .hero-flow__path {
+            fill: none;
+            stroke: $color-brown-900;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            vector-effect: non-scaling-stroke;
+            opacity: 0;
+        }
+
+        .branch-path {
+            stroke-width: 1.5;
         }
     }
 
-    &__botanicals-text {
-        font-size: 52px;
-        letter-spacing: 1px;
-
-        @include tablet {
-            font-size: 32px;
-        }
-
-        @include mobile {
-            font-size: 24px;
-        }
-    }
-
-    &__botanicals-circles {
+    &__botanicals-interactive {
         position: absolute;
-        z-index: 2;
-        right: clamp(100px, 20%, 300px);
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+        inset: 0;
+        z-index: 5;
 
-        .circle-item {
+        .ingredient-point {
+            position: absolute;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            gap: 15px;
-        }
+            gap: 20px;
+            cursor: pointer;
 
-        .circle-label {
-            font-size: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        .circle-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        @include mobile {
-            right: 20px;
-
-            .circle-img {
-                width: 60px;
-                height: 60px;
+            .ingredient-label {
+                font-size: 24px;
+                opacity: 0.6;
+                transition: opacity 0.3s, transform 0.3s;
             }
 
-            .circle-label {
-                font-size: 13px;
+            .ingredient-image-wrap {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                overflow: hidden;
+                opacity: 0;
+                transform: scale(0.8);
+                transition: opacity 0.3s, transform 0.3s;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            // 호버 시 혹은 활성화 시
+            &:hover,
+            &.is-active {
+                .ingredient-label {
+                    opacity: 1;
+                    transform: translateX(-10px);
+                }
+
+                .ingredient-image-wrap {
+                    opacity: 1;
+                    transform: scale(1);
+                }
             }
         }
     }
 
-    &__botanicals-bottle {
+    &__botanicals-final-bottle {
         position: absolute;
-        right: clamp(20px, 8%, 100px);
-        bottom: 50px;
-        width: 100px;
-        z-index: 2;
+        width: 200px;
+        z-index: 10;
 
-        img {
+        .product-appearance {
             width: 100%;
             height: auto;
-            position: relative;
-            z-index: 2;
-        }
+            will-change: opacity, filter, transform;
 
-        @include mobile {
-            width: 60px;
-            bottom: 30px;
-            right: 10px;
+            img {
+                width: 100%;
+                height: auto;
+                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+            }
         }
     }
 }

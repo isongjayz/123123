@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 /**
- * HomeCoda 컴포넌트 (기존 HomeClosing)
+ * HomeCoda 컴포넌트
  * 
  * 홈 페이지의 전체 이야기를 우아하게 마무리하는 종결부 섹션입니다.
  */

@@ -7,6 +7,7 @@
 // 수정사항: hero 전용 스타일 분리
 
 .home {
+
     // ===== Hero 섹션 =====
     // 수정사항:
     // - bottle_sequence_fix_outline 애니메이션 hero를 홈 스타일 체계로 이식
@@ -51,15 +52,9 @@
                 animation-delay: 2.25s;
             }
 
-            .home__hero-copy--left {
-                animation: homeHeroCopyRevealLeft 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-                animation-delay: 3.4s;
-            }
-
-            .home__hero-copy--right {
-                animation: homeHeroCopyRevealRight 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-                animation-delay: 3.55s;
-            }
+            // .home__hero-title-container {
+            //     // GSAP에서 제어
+            // }
 
         }
     }
@@ -124,60 +119,48 @@
             stroke-width: 3.2;
             opacity: 0;
             filter:
-                drop-shadow(0 0 5px rgba(255, 244, 226, 0.9))
-                drop-shadow(0 0 12px rgba(255, 231, 197, 0.45));
+                drop-shadow(0 0 5px rgba(255, 244, 226, 0.9)) drop-shadow(0 0 12px rgba(255, 231, 197, 0.45));
         }
     }
 
-    &__hero-copy {
+    &__hero-title-container {
         position: absolute;
         top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 3;
-        width: min(30vw, 440px);
-        color: #f5ede5;
-        opacity: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         pointer-events: none;
-        text-wrap: balance;
-        text-shadow: 0 2px 18px rgba(10, 8, 7, 0.22);
-
-        h2,
-        p {
-            margin: 0;
-        }
     }
 
     &__hero-heading {
+        display: flex;
+        align-items: center;
+        gap: 0; // GSAP x translation으로 간격 조절
+        color: #f5ede5;
+        text-shadow: 0 2px 18px rgba(10, 8, 7, 0.22);
+        margin: 0;
         font-size: clamp(2rem, 3.2vw, 4rem);
         font-weight: 400;
         line-height: 1.08;
         letter-spacing: -0.03em;
-        margin: 0;
     }
 
-    &__hero-eyebrow {
-        margin: 0 0 1rem !important;
-        font-size: 0.78rem;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-        opacity: 0.78;
+    &__hero-text {
+        opacity: 0;
+        white-space: nowrap;
+
+        &--left {
+            text-align: right;
+        }
+
+        &--right {
+            text-align: left;
+        }
     }
-
-    &__hero-copy--left {
-        left: calc(50% - 1.5rem);
-        transform: translate(-18%, -50%);
-        text-align: right;
-        transform-origin: right center;
-    }
-
-    &__hero-copy--right {
-        right: calc(50% - 1.5rem);
-        transform: translate(18%, -50%);
-        text-align: left;
-        transform-origin: left center;
-        pointer-events: auto;
-    }
-
-
 
 }
 
@@ -239,37 +222,9 @@
     }
 }
 
-@keyframes homeHeroCopyRevealLeft {
-    0% {
-        opacity: 0;
-        transform: translate(-18%, -50%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(-118%, -50%);
-    }
-}
-
-@keyframes homeHeroCopyRevealRight {
-    0% {
-        opacity: 0;
-        transform: translate(18%, -50%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(118%, -50%);
-    }
-}
-
 
 @media (max-width: 1100px) {
     .home {
-        &__hero-copy {
-            width: min(38vw, 360px);
-        }
-
         &__hero-heading {
             font-size: clamp(1.5rem, 3.2vw, 2.6rem);
         }
@@ -280,71 +235,26 @@
     .home {
         &__hero {
             min-height: 100svh;
-
-            &.is-ready {
-                .home__hero-copy--left {
-                    animation-name: homeHeroCopyRevealMobileLeft;
-                }
-
-                .home__hero-copy--right {
-                    animation-name: homeHeroCopyRevealMobileRight;
-                }
-
-            }
         }
 
-        &__hero-copy {
-            width: min(44vw, 300px);
+        &__hero-title-container {
             top: auto;
             bottom: 10svh;
+            transform: translateX(-50%);
         }
 
         &__hero-heading {
             font-size: clamp(1.2rem, 5vw, 2rem);
         }
-
-        &__hero-copy--left {
-            left: 50%;
-            transform: translate(-12%, 1.5rem);
-        }
-
-        &__hero-copy--right {
-            right: 50%;
-            transform: translate(12%, 1.5rem);
-        }
-
-
-
     }
 }
 
-@keyframes homeHeroCopyRevealMobileLeft {
-    0% {
-        opacity: 0;
-        transform: translate(-12%, 1.5rem);
-    }
 
-    100% {
-        opacity: 1;
-        transform: translate(-108%, 0);
-    }
-}
-
-@keyframes homeHeroCopyRevealMobileRight {
-    0% {
-        opacity: 0;
-        transform: translate(12%, 1.5rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(108%, 0);
-    }
-}
 
 
 @media (prefers-reduced-motion: reduce) {
     .home {
+
         &__hero-overlay,
         &__hero-bottle-image,
         &__hero-copy,

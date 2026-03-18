@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 /**
- * HomeQuote 컴포넌트 (기존 HomeMessage)
+ * HomeQuote 컴포넌트
  * 
  * 브랜드의 핵심 문구를 심플한 등장 애니메이션과 함께 보여주는 인용구 섹션입니다.
  */
