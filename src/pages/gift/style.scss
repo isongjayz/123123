@@ -33,6 +33,17 @@
     display: flex;
     justify-content: center;
     gap: 0;
+
+    @include tablet {
+      bottom: 40px;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      bottom: 0;
+      padding: 20px 16px;
+      gap: 16px;
+    }
   }
 
   &__item {
@@ -51,6 +62,17 @@
     &.is-dim {
       opacity: 0.35;
     }
+
+    @include tablet {
+      padding: 0 30px;
+    }
+
+    @include mobile {
+      padding: 0;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
   }
 
   &__en {
@@ -67,6 +89,22 @@
       color: #fff;
       font-size: 50px;
     }
+
+    @include tablet {
+      font-size: 28px;
+
+      .is-active & {
+        font-size: 36px;
+      }
+    }
+
+    @include mobile {
+      font-size: 22px;
+
+      .is-active & {
+        font-size: 26px;
+      }
+    }
   }
 
   &__title {
@@ -78,6 +116,22 @@
     .is-active & {
       font-size: 31px;
       color: #fff;
+    }
+
+    @include tablet {
+      font-size: 16px;
+
+      .is-active & {
+        font-size: 22px;
+      }
+    }
+
+    @include mobile {
+      font-size: 15px;
+
+      .is-active & {
+        font-size: 18px;
+      }
     }
   }
 
@@ -91,6 +145,10 @@
 
     .is-active & {
       color: rgba(255, 255, 255, 0.75);
+    }
+
+    @include tablet {
+      display: none;
     }
   }
 }
@@ -408,11 +466,28 @@
 .gift-others {
   margin-top: 200px;
 
+  @include tablet {
+    margin-top: 120px;
+  }
+
+  @include mobile {
+    margin-top: 80px;
+  }
+
   &__title {
     font-size: 50px;
     color: $color-brown-400;
     text-align: left;
     margin-bottom: 32px;
+
+    @include tablet {
+      font-size: 36px;
+    }
+
+    @include mobile {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
   }
 
   &__list {

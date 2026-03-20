@@ -5,6 +5,14 @@
     background: $main-bg;
     padding-bottom: 140px;
 
+    @include tablet {
+        padding-bottom: 100px;
+    }
+
+    @include mobile {
+        padding-bottom: 80px;
+    }
+
     &--empty {
         display: flex;
         align-items: center;
@@ -21,12 +29,24 @@
         align-items: start;
         padding-top: 140px;
         padding-bottom: 120px;
+        padding-left: 200px;
+        padding-right: 200px;
 
         @include tablet {
             grid-template-columns: 1fr;
             gap: 40px;
             padding-top: 110px;
             padding-bottom: 80px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @include mobile {
+            gap: 24px;
+            padding-top: 80px;
+            padding-bottom: 60px;
+            padding-left: 16px;
+            padding-right: 16px;
         }
     }
 
@@ -156,6 +176,19 @@
 
     &__tabs-wrap {
         padding-bottom: 80px;
+        padding-left: 200px;
+        padding-right: 200px;
+
+        @include tablet {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @include mobile {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 60px;
+        }
     }
 
     &__tabs-header {
@@ -422,6 +455,18 @@
 
 .product-accompanied {
     padding-top: 30px;
+    padding-left: 200px;
+    padding-right: 200px;
+
+    @include tablet {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    @include mobile {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
     &__title {
         margin-bottom: 32px;
