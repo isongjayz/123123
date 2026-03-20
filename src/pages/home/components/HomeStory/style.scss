@@ -9,7 +9,7 @@
 .home {
     // ===== 2. Brand Story (브랜드 스토리) =====
     &__brand-story {
-        padding: 100px 0;
+        padding: 0;
         background: $color-yellow-500;
         position: relative;
     }
@@ -26,21 +26,36 @@
     &__brand-story-line {
         position: absolute;
         top: 0;
-        bottom: 0;
-        left: 35%; // Percentage-based position
-        width: 1px;
-        background-color: rgba(96, 59, 45, 0.2);
-        transform: translateX(-50%);
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+
+        &-base,
+        &-path {
+            position: absolute;
+            width: 2px;
+            margin-left: -1px;
+        }
+
+        &-base {
+            background: rgba($color-brown-500, 0.18);
+        }
+
+        &-path {
+            background: $color-brown-500;
+        }
 
         @include mobile {
-            left: 20px;
+            display: none;
         }
     }
 
     &__brand-story-block {
         position: relative;
         width: 100%;
-        height: 1024px;
+        height: 900px;
         display: flex;
         align-items: center;
         padding: 0;
@@ -72,6 +87,7 @@
             font-size: 20px;
             font-family: 'Bona Nova', serif;
             color: rgba($color-brown-500, 0.35);
+            z-index: 3;
 
             span {
                 cursor: pointer;
@@ -95,8 +111,7 @@
             left: 552px;
             top: 50%;
             transform: translate(-50%, -50%);
-            padding: 20px 0;
-            z-index: 2;
+            z-index: 3;
 
             .brand-story-path-align,
             .brand-story-svg {
@@ -112,9 +127,10 @@
                 transform: translateX(25.5px);
             }
 
-            .brand-story-svg {
-                width: 100px;
-                height: 120px;
+            .brand-story-path-align--presence {
+                width: 218px;
+                height: 205px;
+                transform: translateX(17px);
             }
 
             @include mobile {
@@ -127,11 +143,12 @@
                 margin-bottom: 20px;
 
                 .brand-story-path-align--genesis,
-                .brand-story-path-align--heritage {
+                .brand-story-path-align--heritage,
+                .brand-story-path-align--presence {
                     transform: none;
                 }
 
-                .brand-story-svg {
+                .brand-story-path-align--presence {
                     width: 60px;
                     height: auto;
                 }
@@ -147,6 +164,7 @@
             width: min(780px, calc(100% - 980px));
             display: flex;
             flex-direction: column;
+            z-index: 3;
 
             @include mobile {
                 position: relative;
@@ -214,6 +232,7 @@
     &__values {
         padding: 0;
         background: $color-yellow-500;
+        position: relative;
     }
 
     &__values-inner {
@@ -221,24 +240,19 @@
         max-width: none;
         margin: 0 auto;
         position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        height: 100%;
 
         @include mobile {
             padding: 0 20px;
-            align-items: flex-start;
         }
     }
 
     &__values-svg-wrap {
         position: absolute;
         top: 0;
-        bottom: 0;
         left: 0;
-        right: 0;
         width: 100%;
-        height: 100%;
+        height: 1024px;
         pointer-events: none;
         z-index: 1;
 
@@ -254,7 +268,29 @@
     }
 
     &__values-line-path {
-        stroke: $color-brown-500;
+        stroke: $color-brown-200;
+    }
+
+    &__values-line-base {
+        stroke: rgba($color-brown-500, 0.18);
+    }
+
+    &__values-viewport {
+        position: sticky;
+        top: 0;
+        height: 1024px;
+        z-index: 5;
+        overflow: hidden;
+
+        @include mobile {
+            position: relative;
+            top: auto;
+            height: auto;
+        }
+    }
+
+    &__values-stage {
+        display: none;
     }
 
     &__values-item {
@@ -268,10 +304,14 @@
         z-index: 5;
 
         @include mobile {
+            position: relative;
+            inset: auto;
             height: auto;
             padding: 40px 20px;
             flex-direction: column;
             align-items: flex-start;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
 
         .home__values-image {
